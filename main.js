@@ -1,21 +1,7 @@
-// LightPay landing: theme, mobile menu, contact link, gentle reveal.
+// LightPay landing: mobile menu, contact link, gentle reveal.
 (() => {
   /** Where "Nous écrire" leads. Set the LightPay contact address here. */
   const CONTACT_EMAIL = '';
-
-  const root = document.documentElement;
-  const dark = () =>
-    root.dataset.theme ? root.dataset.theme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-  document.getElementById('themeBtn')?.addEventListener('click', () => {
-    const next = dark() ? 'light' : 'dark';
-    root.dataset.theme = next;
-    try {
-      localStorage.setItem('lightpay.theme', next);
-    } catch (e) {
-      // preference only
-    }
-  });
 
   const menuBtn = document.getElementById('menuBtn');
   const links = document.getElementById('navLinks');
@@ -28,16 +14,16 @@
     if (e.target instanceof HTMLAnchorElement) setMenu(false);
   });
 
-  const contact = document.getElementById('contactLink');
-  if (contact) {
-    if (CONTACT_EMAIL) contact.setAttribute('href', `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('LightPay — intégration')}`);
-    else contact.setAttribute('href', '/account');
+  if (CONTACT_EMAIL) {
+    const mail = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('LightPay — intégration')}`;
+    document.getElementById('contactLink')?.setAttribute('href', mail);
+    document.getElementById('apiLink')?.setAttribute('href', mail);
   }
 
   const year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());
 
-  const targets = document.querySelectorAll('.card, .flow li, .checklist li, .code, .cta, .section-head');
+  const targets = document.querySelectorAll('.col, .steps li, .list li, .code, .fees, .final, .phones');
   if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     targets.forEach((el) => el.classList.add('reveal'));
     const io = new IntersectionObserver(
