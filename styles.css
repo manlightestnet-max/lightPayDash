@@ -12,6 +12,29 @@
   --green: #01e399;
   --green-ink: #00895b;
   --on-green: #03140d;
+  --nav-bg: rgba(255, 255, 255, .92);
+  --frame: #f1f1f1;
+  --on-ink: #ffffff;
+}
+/* Night: follows the phone's setting (and stops browsers from inverting the page themselves). */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #050706;
+    --ink: #f3f6f4;
+    --body: #b3bbb7;
+    --muted: #8a938f;
+    --line: #1f2422;
+    --band: #0c100e;
+    --band-ink: #f3f6f4;
+    --band-muted: #8a938f;
+    --green-ink: #2df0ad;
+    --nav-bg: rgba(5, 7, 6, .88);
+    --frame: #1a1f1d;
+    --on-ink: #050706;
+  }
+  .phone { box-shadow: 0 30px 80px rgba(0, 0, 0, .6), 0 0 0 10px var(--frame); }
+  .phone.dark-frame { box-shadow: 0 30px 80px rgba(0, 0, 0, .6), 0 0 0 10px #262c29; }
+  .screen.dark { background: #0c0f0e; }
 }
 
 * { box-sizing: border-box; }
@@ -28,12 +51,12 @@ h1, h2, h3, p { margin: 0; }
 .btn-dark { background: var(--green); color: var(--on-green); font-weight: 600; }
 .btn-dark:hover { opacity: .85; }
 .btn-line { border: 1px solid var(--ink); color: var(--ink); }
-.btn-line:hover { background: var(--ink); color: #fff; }
+.btn-line:hover { background: var(--ink); color: var(--on-ink); }
 .link { font-size: 13px; text-decoration: none; padding: 0 8px; }
 .icon-btn { width: 40px; height: 40px; border: 0; background: transparent; color: var(--ink); display: inline-flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; }
 
 /* Nav */
-.nav { position: sticky; top: 0; z-index: 10; background: rgba(255, 255, 255, .92); backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--line); }
+.nav { position: sticky; top: 0; z-index: 10; background: var(--nav-bg); backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--line); }
 .nav-inner { display: flex; align-items: center; gap: 28px; height: 68px; }
 .brand { display: inline-flex; align-items: center; gap: 8px; font-size: 19px; font-weight: 600; letter-spacing: -.01em; text-decoration: none; }
 .brand img { display: block; }
@@ -59,7 +82,7 @@ h3 { font-size: 11px; font-weight: 600; letter-spacing: .16em; }
 
 /* Phones (static replicas of the app screens) */
 .phones { display: flex; justify-content: center; align-items: flex-start; gap: 28px; flex-wrap: wrap; margin-top: 72px; }
-.phone { width: 320px; height: 692px; border-radius: 44px; overflow: hidden; box-shadow: 0 30px 80px rgba(0, 0, 0, .16), 0 0 0 10px #f1f1f1; text-align: left; }
+.phone { width: 320px; height: 692px; border-radius: 44px; overflow: hidden; box-shadow: 0 30px 80px rgba(0, 0, 0, .16), 0 0 0 10px var(--frame); text-align: left; }
 .phone.dark-frame { margin-top: 64px; box-shadow: 0 30px 80px rgba(0, 0, 0, .22), 0 0 0 10px #2a2a2a; }
 .screen { width: 390px; height: 844px; transform: scale(.8205); transform-origin: top left; display: flex; flex-direction: column; font-family: 'Poppins', sans-serif; }
 .screen.light { background: #fff; color: #111; --m: #6b6b6b; --d: #9a9a9a; }
@@ -133,7 +156,7 @@ h3 { font-size: 11px; font-weight: 600; letter-spacing: .16em; }
 
 /* Phone width */
 @media (max-width: 860px) {
-  .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; gap: 0; background: #fff; border-bottom: 1px solid var(--line); padding: 8px 24px 16px; }
+  .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--line); padding: 8px 24px 16px; }
   .nav-links.open { display: flex; }
   .nav-links a { padding: 12px 0; font-size: 15px; }
   .show-sm { display: inline-flex; }
