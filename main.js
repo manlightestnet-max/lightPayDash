@@ -23,7 +23,7 @@
   // Night / day: flips the current theme and remembers it.
   document.getElementById('themeBtn')?.addEventListener('click', () => {
     const root = document.documentElement;
-    const current = root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const current = root.getAttribute('data-theme') || 'dark';
     const next = current === 'dark' ? 'light' : 'dark';
     root.setAttribute('data-theme', next);
     try { localStorage.setItem('lightpay.theme', next); } catch (e) {}

@@ -1,63 +1,45 @@
-/* LightPay landing — ink and the brand green, Poppins. */
+/* LightPay landing — Salacope colours, the brand mark, Poppins. */
 :root {
-  --bg: #ffffff;
-  --ink: #111111;
-  --body: #4a4a4a;
-  --muted: #6b6b6b;
-  --line: #ececec;
-  --band: #070a09;
-  --band-ink: #f2f2f2;
-  --band-muted: #a3a3a3;
-  --radius: 10px;
-  --green: #01e399;
-  --green-ink: #00895b;
-  --on-green: #03140d;
-  --nav-bg: rgba(255, 255, 255, .92);
-  --frame: #f1f1f1;
-  --on-ink: #ffffff;
-  --frame-dark: #2a2a2a;
-  --phone-shadow: rgba(0, 0, 0, .16);
-  --screen-dark: #1c1c1c;
-  color-scheme: light;
-}
-/* Night and day: the phone's setting by default, or the visitor's choice (theme button). */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --bg: #050706;
-    --ink: #f3f6f4;
-    --body: #b3bbb7;
-    --muted: #8a938f;
-    --line: #1f2422;
-    --band: #0c100e;
-    --band-ink: #f3f6f4;
-    --band-muted: #8a938f;
-    --green-ink: #2df0ad;
-    --nav-bg: rgba(5, 7, 6, .88);
-    --frame: #1a1f1d;
-    --frame-dark: #262c29;
-    --phone-shadow: rgba(0, 0, 0, .6);
-    --screen-dark: #0c0f0e;
-    --on-ink: #050706;
-  }
-}
-:root[data-theme="dark"] {
+  /* Salacope's tokens are the source of truth for colours. Night by default, day on request. */
   color-scheme: dark;
-  --bg: #050706;
-  --ink: #f3f6f4;
-  --body: #b3bbb7;
-  --muted: #8a938f;
-  --line: #1f2422;
-  --band: #0c100e;
-  --band-ink: #f3f6f4;
-  --band-muted: #8a938f;
-  --green-ink: #2df0ad;
-  --nav-bg: rgba(5, 7, 6, .88);
-  --frame: #1a1f1d;
-  --frame-dark: #262c29;
+  --bg: #0b0b0c;
+  --ink: #f4f4f5;
+  --body: #b8b8be;
+  --muted: #9b9ba2;
+  --line: #2a2a2d;
+  --band: #131314;
+  --band-ink: #f4f4f5;
+  --band-muted: #9b9ba2;
+  --radius: 10px;
+  --green: #34d399;
+  --green-ink: #34d399;
+  --on-green: #04130d;
+  --nav-bg: rgba(11, 11, 12, .88);
+  --frame: #1c1c1e;
+  --frame-dark: #2a2a2d;
   --phone-shadow: rgba(0, 0, 0, .6);
-  --screen-dark: #0c0f0e;
-  --on-ink: #050706;
+  --screen-dark: #131314;
+  --on-ink: #0b0b0c;
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #ffffff;
+  --ink: #18181b;
+  --body: #52525b;
+  --muted: #71717a;
+  --line: #e4e4e7;
+  --band: #18181b;
+  --band-ink: #f4f4f5;
+  --band-muted: #a1a1aa;
+  --green: #047857;
+  --green-ink: #047857;
+  --on-green: #ffffff;
+  --nav-bg: rgba(255, 255, 255, .92);
+  --frame: #f4f4f5;
+  --frame-dark: #2a2a2d;
+  --phone-shadow: rgba(0, 0, 0, .16);
+  --screen-dark: #131314;
+  --on-ink: #ffffff;
 }
 
 * { box-sizing: border-box; }
@@ -200,7 +182,3 @@ h3 { font-size: 11px; font-weight: 600; letter-spacing: .16em; }
 .theme-btn .moon { display: none; }
 :root[data-theme="light"] .theme-btn .moon { display: block; }
 :root[data-theme="light"] .theme-btn .sun { display: none; }
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme]) .theme-btn .moon { display: block; }
-  :root:not([data-theme]) .theme-btn .sun { display: none; }
-}
