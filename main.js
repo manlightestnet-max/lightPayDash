@@ -20,6 +20,15 @@
     document.getElementById('apiLink')?.setAttribute('href', mail);
   }
 
+  // Night / day: flips the current theme and remembers it.
+  document.getElementById('themeBtn')?.addEventListener('click', () => {
+    const root = document.documentElement;
+    const current = root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('lightpay.theme', next); } catch (e) {}
+  });
+
   const year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());
 

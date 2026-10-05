@@ -15,10 +15,15 @@
   --nav-bg: rgba(255, 255, 255, .92);
   --frame: #f1f1f1;
   --on-ink: #ffffff;
+  --frame-dark: #2a2a2a;
+  --phone-shadow: rgba(0, 0, 0, .16);
+  --screen-dark: #1c1c1c;
+  color-scheme: light;
 }
-/* Night: follows the phone's setting (and stops browsers from inverting the page themselves). */
+/* Night and day: the phone's setting by default, or the visitor's choice (theme button). */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
     --bg: #050706;
     --ink: #f3f6f4;
     --body: #b3bbb7;
@@ -30,11 +35,29 @@
     --green-ink: #2df0ad;
     --nav-bg: rgba(5, 7, 6, .88);
     --frame: #1a1f1d;
+    --frame-dark: #262c29;
+    --phone-shadow: rgba(0, 0, 0, .6);
+    --screen-dark: #0c0f0e;
     --on-ink: #050706;
   }
-  .phone { box-shadow: 0 30px 80px rgba(0, 0, 0, .6), 0 0 0 10px var(--frame); }
-  .phone.dark-frame { box-shadow: 0 30px 80px rgba(0, 0, 0, .6), 0 0 0 10px #262c29; }
-  .screen.dark { background: #0c0f0e; }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #050706;
+  --ink: #f3f6f4;
+  --body: #b3bbb7;
+  --muted: #8a938f;
+  --line: #1f2422;
+  --band: #0c100e;
+  --band-ink: #f3f6f4;
+  --band-muted: #8a938f;
+  --green-ink: #2df0ad;
+  --nav-bg: rgba(5, 7, 6, .88);
+  --frame: #1a1f1d;
+  --frame-dark: #262c29;
+  --phone-shadow: rgba(0, 0, 0, .6);
+  --screen-dark: #0c0f0e;
+  --on-ink: #050706;
 }
 
 * { box-sizing: border-box; }
@@ -82,11 +105,11 @@ h3 { font-size: 11px; font-weight: 600; letter-spacing: .16em; }
 
 /* Phones (static replicas of the app screens) */
 .phones { display: flex; justify-content: center; align-items: flex-start; gap: 28px; flex-wrap: wrap; margin-top: 72px; }
-.phone { width: 320px; height: 692px; border-radius: 44px; overflow: hidden; box-shadow: 0 30px 80px rgba(0, 0, 0, .16), 0 0 0 10px var(--frame); text-align: left; }
-.phone.dark-frame { margin-top: 64px; box-shadow: 0 30px 80px rgba(0, 0, 0, .22), 0 0 0 10px #2a2a2a; }
+.phone { width: 320px; height: 692px; border-radius: 44px; overflow: hidden; box-shadow: 0 30px 80px var(--phone-shadow), 0 0 0 10px var(--frame); text-align: left; }
+.phone.dark-frame { margin-top: 64px; box-shadow: 0 30px 80px var(--phone-shadow), 0 0 0 10px var(--frame-dark); }
 .screen { width: 390px; height: 844px; transform: scale(.8205); transform-origin: top left; display: flex; flex-direction: column; font-family: 'Poppins', sans-serif; }
 .screen.light { background: #fff; color: #111; --m: #6b6b6b; --d: #9a9a9a; }
-.screen.dark { background: #1c1c1c; color: #f2f2f2; --m: #a3a3a3; --d: #8a8a8a; }
+.screen.dark { background: var(--screen-dark); color: #f2f2f2; --m: #a3a3a3; --d: #8a8a8a; }
 .s-title { display: flex; flex-direction: column; align-items: center; gap: 4px; padding-top: 28px; font-size: 11px; font-weight: 600; letter-spacing: .16em; }
 .s-title svg { font-size: 16px; }
 .s-balance { text-align: center; font-size: 42px; font-weight: 600; margin-top: 34px; }
@@ -173,3 +196,11 @@ h3 { font-size: 11px; font-weight: 600; letter-spacing: .16em; }
 }
 .s-brand { flex-direction: row; justify-content: center; gap: 6px; font-size: 13px; letter-spacing: 0; }
 .s-brand b { font-weight: 600; color: var(--green-ink); }
+/* Theme button: shows the theme you would switch to. */
+.theme-btn .moon { display: none; }
+:root[data-theme="light"] .theme-btn .moon { display: block; }
+:root[data-theme="light"] .theme-btn .sun { display: none; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .theme-btn .moon { display: block; }
+  :root:not([data-theme]) .theme-btn .sun { display: none; }
+}
